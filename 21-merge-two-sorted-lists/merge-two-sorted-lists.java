@@ -11,39 +11,39 @@
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2)
     {
-        if(list1 == null && list2 == null)
-        {
-            return null;
-        }
-
         ListNode temp1 = list1;
         ListNode temp2 = list2;
+        ListNode head = new ListNode(100);
+        ListNode temp = head;
 
-        LinkedList<Integer> list = new LinkedList<>();
-
-        while(temp1 != null)
+        while(temp1 != null && temp2 != null)
         {
-            list.add(temp1.val);
-            temp1 = temp1.next;
+            if(temp1.val < temp2.val)
+            {
+                ListNode a = new ListNode(temp1.val);
+                temp.next = a;
+                temp = a;
+                temp1 = temp1.next;
+            }
+            else
+            {
+                ListNode a = new ListNode(temp2.val);
+                temp.next = a;
+                temp = a;
+                temp2 = temp2.next;
+            }
         }
 
-        while(temp2 != null)
+        if(temp1 == null)
         {
-            list.add(temp2.val);
-            temp2 = temp2.next;
+            temp.next = temp2;
+        }
+        else
+        {
+            temp.next = temp1;
         }
 
-        Collections.sort(list);
+        return head.next;
 
-        ListNode iRet = new ListNode(0);
-        ListNode temp = iRet;
-
-        for(Integer i : list)
-        {
-            temp.next =  new ListNode(i);
-            temp = temp.next;
-        }
-
-        return iRet.next;
     }
 }
