@@ -7,7 +7,7 @@ class Solution {
 
         for(i = 0; i < matrix.length; i++)
         {
-            for(j = 0; j < matrix[i].length; j++)
+            for(j = 0; j < matrix[i].length && bFlag == false; j++)
             {
                 if(matrix[i][j] == target)
                 {
